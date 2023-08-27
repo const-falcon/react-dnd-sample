@@ -5,7 +5,8 @@ const Board = () => {
 
   return (
     <div id="board">
-      <div className="square" />
+      <p className="square">動かせるよ</p>
+      <p className="background-text">dropできるよーん</p>
     </div>
   );
 };
