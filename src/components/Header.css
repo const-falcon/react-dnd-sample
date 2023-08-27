@@ -1,0 +1,25 @@
+#header {
+  background-color: #282c34;
+  position: relative;
+  height: 60px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .logo {
+    animation: spin-logo infinite 20s linear;
+    height: 42px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    margin: 9px 0px;
+  }
+}
+
+@keyframes spin-logo {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
