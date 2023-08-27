@@ -1,0 +1,14 @@
+#board {
+  background-color: #8ED1E0;
+  width: 960px;
+  height: 540px;
+  margin: 100px auto;
+  position: relative;
+}
+
+.square {
+  background-color: #0091C5;
+  width: 100px;
+  height: 100px;
+  position: absolute;
+}
