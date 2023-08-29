@@ -27,7 +27,7 @@ const Board = () => {
         setPosition((prev) => {
           return {
             top: Math.round(prev.top + delta.y),
-            left: Math.round(prev.left + delta.y),
+            left: Math.round(prev.left + delta.x),
           };
         });
       },
