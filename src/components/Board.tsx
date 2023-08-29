@@ -11,15 +11,18 @@ type Position = {
 const Board = () => {
   const [position, setPosition] = useState<Position>({ top: 0, left: 0 });
 
-  const [collected, drag, dragPreview] = useDrag(
+  const [{ isDragging }, drag] = useDrag(
     {
       type: "square",
       item: { top: position.top, left: position.left },
+      collect: (monitor) => ({
+        isDragging: !!monitor.isDragging(),
+      }),
     },
     [position]
   );
 
-  const [collectedProps, drop] = useDrop(
+  const [_, drop] = useDrop(
     () => ({
       accept: "square",
       drop(_, monitor) {
@@ -37,7 +40,14 @@ const Board = () => {
 
   return (
     <div id="board" ref={drop}>
-      <p className="square" ref={drag} style={position}>
+      <p
+        className="square"
+        ref={drag}
+        style={{
+          ...position,
+          display: isDragging ? "none" : "block",
+        }}
+      >
         動かせるよ
       </p>
       <p className="background-text">dropできるよーん</p>
