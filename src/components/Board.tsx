@@ -15,16 +15,12 @@ const Board = () => {
   const isOnBoard = (delta: XYCoord) => {
     // 上端を判定
     if (position.top + delta.y < 0) return false;
-
     // 右端を判定
-    // 100pxベタ書きはせず、要素を参照して幅を取りたい
-
+    if (position.left + 100 + delta.x > 960) return false;
     // 左端を判定
     if (position.left + delta.x < 0) return false;
-
     // 下端を判定
-    // 100pxベタ書きはせず、要素を参照して幅を取りたい
-
+    if (position.top + 100 + delta.y > 540) return false;
     return true;
   };
 
@@ -39,12 +35,12 @@ const Board = () => {
     [position]
   );
 
-  const [{ canDrop }, drop] = useDrop(
+  const [_, drop] = useDrop(
     () => ({
       accept: "square",
       drop: (_, monitor) => {
-        const delta = monitor.getDifferenceFromInitialOffset() as XYCoord; // yは上に動くと-になる...
-        // console.log(delta);
+        // yは上に動くと-になる...
+        const delta = monitor.getDifferenceFromInitialOffset() as XYCoord;
         setPosition((prev) => {
           return {
             top: Math.round(prev.top + delta.y),
@@ -53,16 +49,15 @@ const Board = () => {
         });
       },
       canDrop: (_, monitor) => {
-        // ボード外にdropできないようにしたい
+        // ボード外にはdropさせない
         const delta = monitor.getDifferenceFromInitialOffset() as XYCoord;
-        // console.log(delta);
         return isOnBoard(delta);
       },
       collect: (monitor) => ({
         canDrop: !!monitor.canDrop(),
       }),
     }),
-    []
+    [position]
   );
 
   return (
