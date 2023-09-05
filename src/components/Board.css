@@ -1,25 +1,25 @@
 #board {
-  background-color: #8ED1E0;
+  position: relative;
   width: 960px;
   height: 540px;
   margin: 100px auto;
-  position: relative;
+  background-color: #8ed1e0;
   color: white;
   font-weight: bold;
 }
 
 .background-text {
-  text-align: center;
   line-height: 540px;
+  text-align: center;
 }
 
 .square {
-  background-color: #0091C5;
+  position: absolute;
   width: 100px;
   height: 100px;
-  position: absolute;
+  margin: 0;
+  background-color: #0091c5;
   line-height: 100px;
   text-align: center;
-  margin: 0px;
   cursor: move;
 }
