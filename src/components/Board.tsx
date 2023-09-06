@@ -35,18 +35,16 @@ const Board = () => {
     [position]
   );
 
-  const [_, drop] = useDrop(
+  const [, drop] = useDrop(
     () => ({
       accept: "square",
       drop: (_, monitor) => {
         // yは上に動くと-になる...
         const delta = monitor.getDifferenceFromInitialOffset() as XYCoord;
-        setPosition((prev) => {
-          return {
-            top: Math.round(prev.top + delta.y),
-            left: Math.round(prev.left + delta.x),
-          };
-        });
+        setPosition((prev) => ({
+          top: Math.round(prev.top + delta.y),
+          left: Math.round(prev.left + delta.x),
+        }));
       },
       canDrop: (_, monitor) => {
         // ボード外にはdropさせない
